@@ -1,0 +1,144 @@
+
+@use "cssreset.css";
+
+//header bg, page bg color
+
+$pageBg : #FFF7ED;
+$headerBg : #FFF7ED;
+$orangeContainerBg: #FFCC8D;
+
+
+$headerText: #4D4D4D;
+$headerSelectedText: #161616;
+
+$footerText : #aaa;
+$footerBg : #252525;
+
+$buttonOrange: #FF8C38;
+$buttonBlack: #161616;
+
+$textOnBodyBg: #161616;
+
+$stateDefaultText: #4D4D4D;
+$stateDefaultBg: #FFEAD0;
+
+$stateSimpleText: #FFEAD0;
+$stateSimpleBg: #E17654;
+
+$stateLuxuryText: #FFEAD0;
+$stateLuxuryBg: #161616;
+
+$stateRuggedText: #FFEAD0;
+$stateRuggedBg: #115E59;
+
+body {
+    margin: 0;
+    // display: flex;
+    // place-items: center;
+    min-width: 320px;
+    min-height: 100vh;
+    font-family: 'Inter', sans-serif;
+    background: $pageBg;
+
+    // background-image: linear-gradient(to bottom, white 40%, $pageBg 100%);
+}
+
+// nav-bar
+nav {
+    display: flex;
+    width: 100%;
+    min-height: 110px;
+    background-color: $headerBg;
+    align-items: center;
+    padding: 20px 26px;
+    gap: 26px;
+
+    .logo {
+        margin-right: auto;
+
+        // border: 1px solid #d00;
+        img {
+            width: 150px;
+        }
+    }
+
+    a {
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: 600;
+        color: $headerText;
+    }
+
+    a:hover {
+        color: $headerSelectedText;
+        // text-decoration: underline;
+        border-bottom: 2px solid $headerSelectedText;
+    }
+}
+
+footer {
+    display: flex;
+    background-color: $footerBg;
+    color: $footerText;
+    justify-content: center;
+    align-items: center;
+    min-height: 75px;
+    // height: 100vh;
+    font-weight: 500;
+}
+
+.home {
+    // border-top: 1px solid transparent;
+    color: white;
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.25) 1%, rgba(0, 0, 0, 0.25) 100%),
+        url("/src/assets/image54.png");
+    min-height: 500px;
+}
+
+.about {
+    p {
+        font-size: 16px;        
+    }
+    .about-img {
+        background-image: url("/src/assets/image55.png");
+        background-size: cover;
+        background-repeat: no-repeat;
+        min-height: 230px;
+        width: 100%;
+    }
+}
+
+
+.main-container {
+    margin: 0 auto;
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    padding: 50px;
+    gap: 30px;
+}
+
+.orange-section {
+    background-color: $orangeContainerBg;
+    padding: 20px;
+    border-radius: 6px;
+    border-top: 1px solid transparent;
+}
+
+button {
+    background-color: $buttonOrange;
+    border-radius: 6px;
+    border: none;
+    padding: 15px;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+
+    &.black {
+        background-color: $buttonBlack;
+    }
+
+    &:hover {
+        cursor: pointer;
+    }
+}
