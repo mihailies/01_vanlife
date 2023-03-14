@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export interface VanData {
     id: string;
@@ -15,8 +16,7 @@ export default function Vans() {
     React.useEffect(() => {
         fetch("/api/vans")
             .then(res => res.json())
-            .then(data => {
-                console.log(data)
+            .then(data => {                
                 setVans(() => data.vans)
             })
     }, [])
@@ -40,16 +40,17 @@ export default function Vans() {
 
 export function Van(props: { data: VanData }) {
     const data = props.data;
-    return <div className="van-content">
-        <img src={data.imageUrl} />
-        <div className="van-title-price">
-            <h3>{data.name} </h3>
-            <div className="van-price">
-                <h3>${data.price}</h3>
-                <span>/day</span>
+    return <Link to={"/vans/" + data.id}>
+        <div className="van-content">
+            <img src={data.imageUrl} />
+            <div className="van-title-price">
+                <h3>{data.name} </h3>
+                <div className="van-price">
+                    <h3>${data.price}</h3>
+                    <span>/day</span>
+                </div>
             </div>
+            <div className={"van-type " + data.type}>{data.type}</div>
         </div>
-        <div className={"van-type " + data.type}>{data.type}</div>
-
-    </div>
+    </Link>
 }

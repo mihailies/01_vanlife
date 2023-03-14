@@ -42,6 +42,12 @@ body {
     // background-image: linear-gradient(to bottom, white 40%, $pageBg 100%);
 }
 
+.site-wrapper{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
 // nav-bar
 nav {
     display: flex;
@@ -68,9 +74,8 @@ nav {
         color: $headerText;
     }
 
-    a:hover {
-        color: $headerSelectedText;
-        // text-decoration: underline;
+    a:hover, .isActive {
+        color: $headerSelectedText;        
         border-bottom: 2px solid $headerSelectedText;
     }
 }
@@ -81,9 +86,9 @@ footer {
     color: $footerText;
     justify-content: center;
     align-items: center;
-    min-height: 75px;
-    // height: 100vh;
+    min-height: 75px;    
     font-weight: 500;
+    margin-top: auto;
 }
 
 .home {
@@ -143,57 +148,73 @@ button {
     }
 }
 
-.vans-list{
+.vans-list {
     display: grid;
-    grid-template:  auto / 1fr 1fr 1fr ;
+    grid-template: auto / 1fr 1fr 1fr;
     row-gap: 40px;
     column-gap: 40px;
 }
 
-.van-content {
-    width: 230px;
-
-    img {
-        width: 230px;
-        height: 230px;
-    }
-
-    .van-title-price {
-        margin-top: 15px;
+.van-details-content {
+    .van-price {
         display: flex;
-        justify-content: space-between;
-        align-items: start;
+    }
+}
 
-        .van-price {
-            line-height: 16px;
-            text-align: right;
-            span {
-                font-size: 12px;
+a {
+    text-decoration: none;
+    color: $textOnBodyBg;
+
+    .van-content {
+        width: 230px;
+
+        img {
+            width: 230px;
+            height: 230px;
+        }
+
+        .van-title-price {
+            margin-top: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+
+            .van-price {
+                line-height: 16px;
+                text-align: right;
+
+                span {
+                    font-size: 12px;
+                }
             }
         }
     }
+}
 
-    .van-type{
-        border-radius: 6px;
-        padding: 5px 20px;
-        display: inline-block;
+.van-type {
+    border-radius: 6px;
+    padding: 5px 20px;
+    display: inline-block;
+    margin-right: auto;
 
-        &.default{
-            background-color: $stateDefaultBg;
-            color: $stateDefaultText;
-        }
-        &.simple{
-            background-color: $stateSimpleBg;
-            color: $stateSimpleText;
-        }
-        &.luxury{
-            background-color: $stateLuxuryBg;
-            color: $stateLuxuryText;
-        }
-        &.rugged{
-            background-color: $stateRuggedBg;
-            color: $stateRuggedText;
-        }
+    &.default {
+        background-color: $stateDefaultBg;
+        color: $stateDefaultText;
     }
 
+    &.simple {
+        background-color: $stateSimpleBg;
+        color: $stateSimpleText;
+    }
+
+    &.luxury {
+        background-color: $stateLuxuryBg;
+        color: $stateLuxuryText;
+    }
+
+    &.rugged {
+        background-color: $stateRuggedBg;
+        color: $stateRuggedText;
+    }
 }
+
