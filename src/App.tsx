@@ -1,27 +1,35 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import './style/_main.scss'
-import About from './components/About'
-import Footer from './components/Footer'
-import Header from './components/Header'
-import Home from './components/Home'
+import About from './pages/About'
+import Footer from './pages/Footer'
+import Header from './pages/Header'
+import Home from './pages/Home'
+import Vans from './pages/Vans'
+import React from 'react'
 
-function App() {
+import "./server"
+
+
+
+export default function App() {
+
+
+
+
 
   return (
     <BrowserRouter>
-      <div className="App">        
+      <div className="App">
         <Header />
-        
+
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/about' element={<About />} />
+          <Route path='/vans' element={<Vans />} />
         </Routes>
 
-        {/* footer */}
         <Footer />
       </div>
     </BrowserRouter>
   )
 }
-
-export default App

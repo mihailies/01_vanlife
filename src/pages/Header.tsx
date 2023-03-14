@@ -7,6 +7,6 @@ export default function Header() {
             <img src={logopng} />
         </Link>
         <Link to="about">About</Link>
-        <Link to="/?van">Van</Link>
+        <Link to="vans">Vans</Link>
     </nav>
 }
