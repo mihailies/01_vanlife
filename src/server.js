@@ -1,6 +1,6 @@
 import { createServer, Model } from "miragejs"
 
-const absPath = "/assets/van";
+const absPath = "/van";
 
 createServer({
     models: {

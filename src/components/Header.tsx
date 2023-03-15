@@ -4,7 +4,7 @@ import logopng from './../assets/logog.png'
 export default function Header() {
     return <nav>
         <Link className='logo' to="/">
-            <img src={logopng} />
+            <img src="/logog.png" />
         </Link>
         <NavLink to="about"
             className={({ isActive }) => isActive ? "isActive" : ""}>About</NavLink>
