@@ -16,7 +16,7 @@ export default function VanDetails() {
 
     return <div className="van-details-content">
         <div className="main-container">
-            <Link to={"/vans"}>{"<"} Back to all vans</Link>
+            <Link to={"/vans"}>&larr; Back to all vans</Link>
             <img src={data.imageUrl} />
             <div className={"van-type " + data.type}>{data.type}</div>
             <h1>{data.name} </h1>
