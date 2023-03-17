@@ -17,6 +17,7 @@ import HostVanInfo from './pages/host/HostVanInfo'
 import LayoutHostVanDetails from './components/LayoutHostVanDetails'
 import HostVanPricing from './pages/host/HostVanPricing'
 import HostVanPhotos from './pages/host/HostVanPhotos'
+import NotFound404 from './pages/NotFound404'
 
 
 
@@ -39,11 +40,13 @@ export default function App() {
             <Route path='vans' element={<HostVans />} />
 
             <Route path='vans/:id' element={<LayoutHostVanDetails />} >
-              <Route path="info" element={<HostVanInfo/>} />
-              <Route path="pricing" element={<HostVanPricing/>} />
-              <Route path="photos" element={<HostVanPhotos/>} />
+              <Route path="info" element={<HostVanInfo />} />
+              <Route path="pricing" element={<HostVanPricing />} />
+              <Route path="photos" element={<HostVanPhotos />} />
             </Route>
           </Route>
+
+          <Route path='*' element={<NotFound404 />} />
         </Route>
       </Routes>
     </BrowserRouter>

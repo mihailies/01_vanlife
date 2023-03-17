@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react"
 import { Link } from "react-router-dom";
-import VanDetails from "../vans/VandDetails";
 import { VanData } from "../vans/Vans";
 
 export default function HostVans() {
@@ -12,7 +11,7 @@ export default function HostVans() {
     }, [])
 
     const vansList = vans.map(van => {
-        return <Link key={van.id} to={"/host/vans/" + van.id + "/info"}>
+        return <Link key={van.id} to={van.id + "/info"}>
             <div className="host-van" key={van.id}>
                 <img src={van.imageUrl} />
                 <div>
