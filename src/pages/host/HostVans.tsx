@@ -1,17 +1,16 @@
-import { useEffect, useState } from "react"
-import { Link } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
+import { getHostVans } from "../../api";
 import { VanData } from "../vans/Vans";
 
+export function loader() {
+    return getHostVans()
+}
+
 export default function HostVans() {
-    const [vans, setVans] = useState([] as VanData[]);
-    useEffect(() => {
-        fetch("/api/host/vans")
-            .then((res) => res.json())
-            .then(data => setVans(data.vans))
-    }, [])
+    const vans = useLoaderData() as VanData[];
 
     const vansList = vans.map(van => {
-        return <Link key={van.id} to={van.id + "/info"}>
+        return <Link key={van.id} to={van.id}>
             <div className="host-van" key={van.id}>
                 <img src={van.imageUrl} />
                 <div>

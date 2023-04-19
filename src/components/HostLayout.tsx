@@ -1,6 +1,12 @@
-import { Link, NavLink, Outlet } from "react-router-dom";
+import { useEffect } from "react";
+import { NavLink, Outlet } from "react-router-dom";
+import { log } from "../util";
 
 export default function LayouHost() {
+    useEffect(() => {
+        log("LayoutHost render()")
+    }, [])
+    
     return <div className="layout-host">
         <nav>
             <NavLink to="."

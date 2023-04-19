@@ -1,21 +1,18 @@
 import { useEffect, useState } from "react";
-import { Link, NavLink, Outlet, useParams } from "react-router-dom";
-import { VanData } from "../pages/vans/Vans";
+import { Link, NavLink, Outlet, useLoaderData, useParams } from "react-router-dom";
+import { getHostVans } from "../../api";
+import { VanData } from "../vans/Vans";
 
+export function loader(p: any) {
+    const { params } = p;
+    return getHostVans(params.id);
+}
 
-export default function LayoutHostVanDetails() {
-
-    const [van, setVan] = useState({} as VanData);
-    const params = useParams();
-
-    useEffect(() => {
-        fetch("/api/host/vans/" + params.id)
-            .then(res => res.json())
-            .then(data => setVan(data.vans[0]))
-    }, [])
+export default function HostVanDetail() {
+    const van = useLoaderData() as VanData;    
 
     return <>
-        <Link to={"../.."} relative="path">&larr; Back to all vans</Link>
+        <Link to={".."} relative="path">&larr; Back to all vans</Link>
         <div className="host-van-details">
             <div className="top-details" >
                 <img src={van.imageUrl} />
@@ -26,7 +23,7 @@ export default function LayoutHostVanDetails() {
                 </div>
             </div>
             <nav>
-                <NavLink to={"info"}
+                <NavLink to={"."}
                     end
                     className={({ isActive }) => isActive ? "isActive" : ""} >
                     Details</NavLink>
@@ -37,7 +34,7 @@ export default function LayoutHostVanDetails() {
                     className={({ isActive }) => isActive ? "isActive" : ""} >
                     Photos</NavLink>
             </nav>
-            <Outlet context={{ van:van }} />
+            <Outlet context={{ van }} />
         </div>
     </>
 }
