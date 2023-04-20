@@ -22,7 +22,7 @@ import Error from './components/Error'
 import HostVanPricing from './pages/host/HostVanPricing'
 import HostVanPhotos from './pages/host/HostVanPhotos'
 import NotFound404 from './pages/NotFound404'
-import { Login } from './pages/Login'
+import { Login, loader as loginLoader } from './pages/Login'
 import { requireAuth } from './util'
 
 export default function App() {
@@ -32,7 +32,7 @@ export default function App() {
       <Route errorElement={<Error />}>
         <Route index element={<Home />} />
         <Route path='about' element={<About />} />
-        <Route path='login' element={<Login />} />
+        <Route path='login' element={<Login />} loader={loginLoader} />
         <Route path='vans' element={<Vans />}
           loader={vansLoader} />
         <Route path='vans/:id' element={<VanDetail />}
@@ -69,9 +69,7 @@ export default function App() {
               }}
             />
           </Route>
-
         </Route>
-
         <Route path='*' element={<NotFound404 />} />
       </Route>
     </Route>

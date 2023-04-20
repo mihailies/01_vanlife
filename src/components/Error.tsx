@@ -5,8 +5,8 @@ export default function Error() {
     const err: any = useRouteError();
 
     if (err.status == 302 &&
-        err.headers?.map?.location == "/login") {
-        return <Navigate to={"/login"} />
+        err.headers?.map?.location) {
+        return <Navigate to={err.headers?.map?.location} />
     }
 
     const sadFaceStyle: React.CSSProperties = {
