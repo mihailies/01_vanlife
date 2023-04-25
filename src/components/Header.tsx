@@ -17,6 +17,8 @@ export default function Header() {
                 className="login-icon"
             />
         </Link>
-        <button onClick={() => localStorage.removeItem("loggedin")}>[logout]</button>
+        <button 
+         title='(fro Development purpose) Clear loggedin loscal storage'
+        onClick={() => localStorage.removeItem("loggedin")}>[logout]</button>
     </nav>
 }

@@ -44,14 +44,7 @@ export async function getHostVans(vanId?: string) {
 
 
 export async function loginUser(creds: any) {
-    let prom = new Promise((myResolve) => {
-        const pauseDuration = 1000;
-        setTimeout(() => {
-            myResolve(`Pause duration: ${pauseDuration} milliseconds`)
-        }, pauseDuration)
-    });
-    await prom.then(r => console.log(r))
-
+    // await Pause(1500);
 
     const res = await fetch("/api/login",
         { method: "post", body: JSON.stringify(creds) }

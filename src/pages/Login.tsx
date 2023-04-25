@@ -1,13 +1,15 @@
-import { Form, useLoaderData, useNavigation, useActionData, Navigate } from "react-router-dom";
+import { Form, useLoaderData, useNavigation, useActionData, Navigate, useNavigate } from "react-router-dom";
 import { loginUser } from "../api";
 import { log } from "../util";
 
 
 export function loader(par: { request: any }) {
     const { request } = par;
+    const isLoggedIn = localStorage.getItem("loggedin");
     return {
         message: new URL(request.url).searchParams.get("message"),
-        redirectTo: new URL(request.url).searchParams.get("redirectTo") || "/host"
+        redirectTo: new URL(request.url).searchParams.get("redirectTo") || ".",
+        isLoggedIn
     }
 }
 
@@ -36,9 +38,30 @@ export async function action(act: any): Promise<AuthLoginData> {
 }
 
 export function Login() {
-    const loaderData = useLoaderData() as { message: string, redirectTo: string };    
+    const loaderData = useLoaderData() as { message: string, redirectTo: string, isLoggedIn: any };
     const navigation = useNavigation();
+    const navigate = useNavigate();
     const actionData: AuthLoginData = useActionData() as AuthLoginData;
+
+
+    if (loaderData.isLoggedIn) {
+
+
+        console.log("True")
+        return <div className="login">
+            <div className="main-container">
+                <h3> You are allready logged in.</h3>
+                <button onClick={() => {
+                    localStorage.clear();
+                    navigate(".");
+                }}>
+                    Log out
+                </button>
+            </div>
+        </div>
+    }
+
+
 
     return <div className="login">
         <div className="main-container">
