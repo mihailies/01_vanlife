@@ -1,5 +1,12 @@
-export async function getVans(vanId?: string) {
+export function Pause(msc: number): Promise<void> {
+    return new Promise( resolve => {
+        setTimeout(() => resolve(), msc);
+    })
+}
 
+
+export async function getVans(vanId?: string) {
+    // await Pause(1500);
     let url = vanId ? `/api/vans/${vanId}` : "/api/vans";
     let res = await fetch(url);
     if (!res.ok) {
@@ -32,7 +39,20 @@ export async function getHostVans(vanId?: string) {
     return data.vans;
 }
 
-export async function loginUser(creds: {email: string, password: string}) {    
+
+
+
+
+export async function loginUser(creds: any) {
+    let prom = new Promise((myResolve) => {
+        const pauseDuration = 1000;
+        setTimeout(() => {
+            myResolve(`Pause duration: ${pauseDuration} milliseconds`)
+        }, pauseDuration)
+    });
+    await prom.then(r => console.log(r))
+
+
     const res = await fetch("/api/login",
         { method: "post", body: JSON.stringify(creds) }
     )

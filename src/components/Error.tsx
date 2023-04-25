@@ -1,12 +1,11 @@
-import { Navigate, useRouteError } from "react-router-dom";
+import { Navigate, useRouteError, isRouteErrorResponse } from "react-router-dom";
 
 
 export default function Error() {
     const err: any = useRouteError();
-
-    if (err.status == 302 &&
-        err.headers?.map?.location) {
-        return <Navigate to={err.headers?.map?.location} />
+    
+    if (err.status == 302) {                
+        return <Navigate to={err.headers.get("location")} />
     }
 
     const sadFaceStyle: React.CSSProperties = {

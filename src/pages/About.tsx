@@ -1,4 +1,7 @@
+import { useNavigate } from "react-router-dom"
+
 export default function About() {
+    const navigate = useNavigate();
     return <div className="about">
 
         <img className="about-img" />
@@ -22,7 +25,10 @@ export default function About() {
                     Your van is ready.
                 </h2>
                 <br />      
-                <button className="black">Explore our vans</button>
+                <button className="black"
+                 onClick={() => {
+                    navigate("/vans")
+                 }}>Explore our vans</button>
             </div>
         </div>
 

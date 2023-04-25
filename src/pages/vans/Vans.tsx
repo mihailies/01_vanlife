@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Link, useLoaderData, useSearchParams } from "react-router-dom";
+import React, { Suspense, useState } from "react";
+import { Link, useLoaderData, useSearchParams, defer, Await } from "react-router-dom";
 import { getVans } from "../../api.js"
 
 export interface VanData {
@@ -12,25 +12,16 @@ export interface VanData {
 }
 
 export function loader() {
-    return getVans();
+    return defer({ vans: getVans() })
 }
 
 export default function Vans() {
-    
+
     const [searchParams, setSearchParams] = useSearchParams();
     const type = searchParams.get("type") || "";
-    const vans = useLoaderData() as VanData[];
+    const loaderData = useLoaderData() as { vans: Promise<VanData[]> };
 
-    let filteredVans = vans;
-    if (type) {
-        filteredVans = vans.filter(van =>
-            van.type == type
-        )
-    }
 
-    let elems = filteredVans.map((el: VanData) => {
-        return <Van key={el.id} data={el} searchParams={searchParams} />
-    })
 
     return <div className="vans">
         <div className="main-container">
@@ -47,9 +38,28 @@ export default function Vans() {
                 <button className="clear"
                     onClick={() => setSearchParams({})}>Clear filter</button>
             </div>
-            <div className="vans-list">
-                {elems}
-            </div>
+            <Suspense fallback={<h2>Vans are loading...</h2>}>
+                <Await resolve={loaderData.vans}>
+                    {
+                        (vans) => {
+                            let filteredVans: VanData[] = vans;
+                            if (type) {
+                                filteredVans = vans.filter((van: VanData) =>
+                                    van.type == type
+                                )
+                            }
+
+                            let elems = filteredVans.map((el: VanData) => {
+                                return <Van key={el.id} data={el} searchParams={searchParams} />
+                            })
+                            return <div className="vans-list">
+                                {elems}
+                            </div>                          
+                        }
+                    }
+                </Await>
+            </Suspense>
+
         </div>
     </div>
 }

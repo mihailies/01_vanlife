@@ -2,14 +2,15 @@ import { useEffect, useState } from "react";
 import { Link, NavLink, Outlet, useLoaderData, useParams } from "react-router-dom";
 import { getHostVans } from "../../api";
 import { VanData } from "../vans/Vans";
+import { requireAuth } from "../../util";
 
-export function loader(p: any) {
-    const { params } = p;
-    return getHostVans(params.id);
+export async function loader(data:{params: any, request: Request}) {
+    await requireAuth(data.request);
+    return getHostVans(data.params.id);
 }
 
 export default function HostVanDetail() {
-    const van = useLoaderData() as VanData;    
+    const van = useLoaderData() as VanData;
 
     return <>
         <Link to={".."} relative="path">&larr; Back to all vans</Link>
