@@ -1,1 +1,1 @@
-https://vanlife-me.netlify.app/vans
+https://vanlife-me.netlify.app
